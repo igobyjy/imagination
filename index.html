@@ -2,14 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Simple Pong Game</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Enhanced Pong Game</title>
+    <link rel="stylesheet" href="styles.css"> <!-- 引入外部 CSS -->
 </head>
 <body>
-    <h1>Simple Pong Game</h1>
+    <h1>Enhanced Pong Game</h1>
     <div class="game-container">
-        <canvas id="pongCanvas" width="800" height="400"></canvas>
+        <canvas id="pongCanvas" width="800" height="600"></canvas>
     </div>
-    <script src="game.js"></script>
+    <div class="controls">
+        <button id="startBtn">开始游戏</button>
+        <button id="pauseBtn">暂停游戏</button>
+        <div class="difficulty-buttons">
+            <button class="difficulty-btn active" data-level="easy">简单</button>
+            <button class="difficulty-btn" data-level="medium">中等</button>
+            <button class="difficulty-btn" data-level="hard">困难</button>
+        </div>
+    </div>
+    <div class="instructions">
+        <p>操作说明：鼠标移动 或 W/S键控制玩家挡板 | 先得11分且领先2分获胜</p>
+    </div>
+    <script src="pongCanvas.js"></script> <!-- JS 文件（可选） -->
 </body>
 </html>
