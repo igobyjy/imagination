@@ -1,24 +1,78 @@
 body {
-    background: #222;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    text-align: center;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #0a0a1a;
+    color: white;
     margin: 0;
+    padding: 20px;
+    min-height: 100vh;
 }
 
 h1 {
-    margin-top: 20px;
+    color: #4a90e2;
+    text-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+    margin-bottom: 10px;
 }
 
 .game-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
+    position: relative;
+    border: 2px solid #4a90e2;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(74, 144, 226, 0.3);
+    margin: 20px 0;
 }
 
-canvas {
-    background: #111;
-    border: 2px solid #fff;
-    box-shadow: 0 0 20px #000;
+#pongCanvas {
+    background: #0a0a1a;
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-width: 120px;
+}
+
+button:hover {
+    background: #2a52be;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.difficulty-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.difficulty-btn {
+    background: #666;
+}
+
+.difficulty-btn.active {
+    background: #ffcc00;
+    color: #000;
+    font-weight: bold;
+}
+
+.instructions {
+    margin-top: 20px;
+    color: #aaa;
+    text-align: center;
+    max-width: 600px;
+    line-height: 1.6;
 }
