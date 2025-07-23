@@ -18,7 +18,7 @@
         };
 
         // ==================== 游戏状态 ====================
-        let gameState = 'start';
+        let gameState = 'start'; // start/playing/paused/gameover
         let playerScore = 0;
         let aiScore = 0;
         let comboCount = 0;
@@ -72,8 +72,8 @@
             });
 
             gameLoop();
+            restartBtn.addEventListener('click', startGame); // 绑定重新开始按钮
         }
-
         // ==================== 核心功能 ====================
         function resizeCanvas() {
             canvas.width = CONFIG.WIDTH;
@@ -226,7 +226,36 @@
                 resetBall();
                 return;
             }
+       // 胜利条件触发
+            if (playerScore >= CONFIG.WIN_SCORE || aiScore >= CONFIG.WIN_SCORE) {
+                const winner = playerScore > aiScore ? '玩家' : 'AI';
+                showGameOver(winner); // 显示游戏结束提示（替代alert）
+            }
+        }
 
+        // 显示游戏结束界面（替代alert）
+        function showGameOver(winner) {
+            gameOverText.textContent = `游戏结束！${winner} 获胜！\n最终比分：${playerScore} : ${aiScore}`;
+            gameOverOverlay.style.display = 'flex'; // 显示覆盖层
+            gameState = 'gameover'; // 标记游戏结束状态
+        }
+
+        // 隐藏游戏结束界面并重新开始
+        function hideGameOver() {
+            gameOverOverlay.style.display = 'none';
+            startGame(); // 调用startGame重置状态并开始新游戏
+        }
+
+        // 修改startGame函数（确保状态正确重置）
+        function startGame() {
+            gameState = 'playing';
+            playerScore = 0;
+            aiScore = 0;
+            comboCount = 0;
+            resetBall();
+            // 立即触发游戏循环更新
+            gameLoop();
+        }
             // 胜利条件：先得7分且领先2分
             if (playerScore >= CONFIG.WIN_SCORE || aiScore >= CONFIG.WIN_SCORE) {
                 const winner = playerScore > aiScore ? '玩家' : 'AI';
@@ -307,7 +336,15 @@
             // 绘制游戏状态提示
             if (gameState === 'start') drawStartScreen();
             if (gameState === 'paused') drawPauseScreen();
+      
+            // 绘制游戏结束覆盖层（替代alert）
+            if (gameState === 'gameover') {
+                gameOverOverlay.style.display = 'flex';
+            } else {
+                gameOverOverlay.style.display = 'none';
+            }
         }
+
 
         function drawStartScreen() {
             ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
