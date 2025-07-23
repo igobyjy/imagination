@@ -76,3 +76,39 @@ button:hover {
     max-width: 600px;
     line-height: 1.6;
 }
+ .game-over-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none; /* 默认隐藏 */
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .game-over-text {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+
+        .restart-btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            background: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .restart-btn:hover {
+            background: #2a52be;
+            transform: translateY(-2px);
+        }
