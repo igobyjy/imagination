@@ -3,13 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <title>Enhanced Pong Game</title>
-    <link rel="stylesheet" href="styles.css"> <!-- 引入外部 CSS -->
+    <style>
+        /* 保留原有 CSS，并新增游戏结束提示样式 */
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #0a0a1a;
+            color: white;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #4a90e2;
+            text-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .game-container {
+            position: relative;
+            border: 2px solid #4a90e2;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(74, 144, 226, 0.3);
+            margin: 20px 0;
+        }
+
+        #pongCanvas {
+            background: #0a0a1a;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 120px;
+        }
+
+        button:hover {
+            background: #2a52be;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .difficulty-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .difficulty-btn {
+            background: #666;
+        }
+
+        .difficulty-btn.active {
+            background: #ffcc00;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .instructions {
+            margin-top: 20px;
+            color: #aaa;
+            text-align: center;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        /* 新增：游戏结束提示层样式 */
+        .game-over-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none; /* 默认隐藏 */
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 10; /* 确保覆盖在画布上方 */
+        }
+
+        .game-over-text {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #ffcc00;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+        }
+
+        .restart-btn {
+            padding: 12px 24px;
+            font-size: 18px;
+            background: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .restart-btn:hover {
+            background: #2a52be;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+    </style>
 </head>
 <body>
     <h1>Enhanced Pong Game</h1>
+    
     <div class="game-container">
         <canvas id="pongCanvas" width="800" height="600"></canvas>
+        <!-- 新增：游戏结束提示层 -->
+        <div class="game-over-overlay" id="gameOverOverlay">
+            <div class="game-over-text" id="gameOverText"></div>
+            <button class="restart-btn" id="restartBtn">重新开始</button>
+        </div>
     </div>
+
     <div class="controls">
         <button id="startBtn">开始游戏</button>
         <button id="pauseBtn">暂停游戏</button>
@@ -19,9 +145,20 @@
             <button class="difficulty-btn" data-level="hard">困难</button>
         </div>
     </div>
+
     <div class="instructions">
         <p>操作说明：鼠标移动 或 W/S键控制玩家挡板 | 先得11分且领先2分获胜</p>
     </div>
-    <script src="game.js"></script> <!-- JS 文件（可选） -->
+
+    <script>
+        // JS 代码（与之前优化后的逻辑一致，此处省略重复内容）
+        // 注意：需确保 JS 中正确获取新增元素（如 gameOverOverlay、restartBtn 等）
+        const canvas = document.getElementById('pongCanvas');
+        const ctx = canvas.getContext('2d');
+        const gameOverOverlay = document.getElementById('gameOverOverlay'); // 新增：获取覆盖层
+        const gameOverText = document.getElementById('gameOverText');       // 新增：获取提示文本
+        const restartBtn = document.getElementById('restartBtn');           // 新增：获取重新开始按钮
+        // ...（其他 JS 代码与之前优化版本一致）...
+    </script>
 </body>
 </html>
